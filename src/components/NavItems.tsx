@@ -1,5 +1,4 @@
 import { navLinks } from '../constants';
-
 export default function NavItems() {
   return (
     <ul className="nav-ul">

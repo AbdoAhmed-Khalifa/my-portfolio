@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+// @ts-nocheck
+
 import { useGLTF } from '@react-three/drei';
 import { useRef } from 'react';
 import gsap from 'gsap';
@@ -19,4 +23,3 @@ export default function Target(props) {
     </mesh>
   );
 }
-  

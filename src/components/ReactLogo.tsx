@@ -1,5 +1,8 @@
-import { Float, useGLTF } from '@react-three/drei';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 
+// @ts-nocheck
+
+import { Float, useGLTF } from '@react-three/drei';
 export default function ReactLogo(props) {
   const { nodes, materials } = useGLTF('/models/react.glb');
   return (

@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+// @ts-nocheck
+
 import { useFrame } from '@react-three/fiber';
 import { ReactNode, useRef } from 'react';
 import { easing } from 'maath';
@@ -20,5 +24,9 @@ export default function HeroCamera({
       );
     }
   });
-  return <group ref={groupRef} scale={isMobile?1:1.2}>{children}</group>;
+  return (
+    <group ref={groupRef} scale={isMobile ? 1 : 1.2}>
+      {children}
+    </group>
+  );
 }

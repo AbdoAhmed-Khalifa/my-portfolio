@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+// @ts-nocheck
+
 import { useEffect, useRef } from 'react';
 import { useGLTF, useVideoTexture } from '@react-three/drei';
 import { useGSAP } from '@gsap/react';

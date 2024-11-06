@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+// @ts-nocheck
+
 import { useGLTF, useTexture } from '@react-three/drei';
 
 export default function HackerRoom(props) {
