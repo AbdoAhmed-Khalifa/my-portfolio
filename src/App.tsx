@@ -1,5 +1,5 @@
 import About from './sections/About';
-import Contact from './sections/Contact';
+// import Contact from './sections/Contact';
 import Hero from './sections/Hero';
 import Footer from './sections/Footer';
 import Navbar from './sections/Navbar';
@@ -15,7 +15,7 @@ export default function App() {
       <About />
       <Projects />
       <Tech />
-      <Contact />
+      {/* <Contact /> */}
       <Footer />
       <ToastContainer
         position="top-center"
