@@ -1,9 +1,9 @@
 import { Suspense, useState } from 'react';
 import { myProjects } from '../constants';
-import { Canvas } from '@react-three/fiber';
-import { Center, OrbitControls } from '@react-three/drei';
-import CanvasLoader from '../components/CanvasLoader';
-import DemoComputer from '../components/DemoComputer';
+// import { Canvas } from '@react-three/fiber';
+// import { Center, OrbitControls } from '@react-three/drei';
+// import CanvasLoader from '../components/CanvasLoader';
+// import DemoComputer from '../components/DemoComputer';
 
 export default function Projects() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number>(0);
@@ -94,7 +94,7 @@ export default function Projects() {
             </button>
           </div>
         </div>
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
+        {/* <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
           <Canvas>
             <ambientLight intensity={Math.PI} />
             <directionalLight position={[10, 10, 5]} />
@@ -107,7 +107,7 @@ export default function Projects() {
             </Center>
             <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
           </Canvas>
-        </div>
+        </div> */}
       </div>
     </section>
   );
