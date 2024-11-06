@@ -8,6 +8,7 @@ const Tech = () => {
         {technologies.map(technology => (
           <div className=" tech-logo-tech" key={technology.name}>
             <img
+            loading="lazy"
               src={technology.icon}
               alt={technology.name}
               className="w-18 h-18"

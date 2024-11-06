@@ -68,6 +68,7 @@ export default function Contact() {
         <img
           src="/assets/terminal.png"
           alt="terminal-bg"
+          loading="lazy"
           className="absolute inset-0 min-h-[120vh]"
         />
 
