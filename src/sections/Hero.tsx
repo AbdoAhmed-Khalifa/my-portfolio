@@ -1,17 +1,18 @@
 import { PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import HackerRoom from '../components/HackerRoom';
 import { Suspense } from 'react';
 import CanvasLoader from '../components/CanvasLoader';
 import { useMediaQuery } from 'react-responsive';
 import { calculateSizes } from '../constants';
+
+import Button from '../components/Button';
+import abdelrahman from '/assets/abdelrahman.pdf';
+import HeroCamera from '../components/HeroCamera';
 import Target from '../components/Target';
 import ReactLogo from '../components/ReactLogo';
 import Cube from '../components/Cube';
 import Rings from '../components/Ring';
-import HeroCamera from '../components/HeroCamera';
-import Button from '../components/Button';
-import abdelrahman from '/assets/abdelrahman.pdf';
+import HackerRoom from '../components/HackerRoom';
 export default function Hero() {
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 768 });

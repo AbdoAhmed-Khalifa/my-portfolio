@@ -13,8 +13,8 @@ export default function App() {
       <Navbar />
       <Hero />
       <About />
-      <Tech />
       <Projects />
+      <Tech />
       <Contact />
       <Footer />
       <ToastContainer
