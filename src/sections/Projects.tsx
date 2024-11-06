@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { myProjects } from '../constants';
 // import { Canvas } from '@react-three/fiber';
 // import { Center, OrbitControls } from '@react-three/drei';
