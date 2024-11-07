@@ -8,12 +8,12 @@ import { calculateSizes } from '../constants';
 import Button from '../components/Button';
 import abdelrahman from '/assets/abdelrahman.pdf';
 
-// const HeroCamera = lazy(() => import('../components/HeroCamera'));
+const HeroCamera = lazy(() => import('../components/HeroCamera'));
 const Target = lazy(() => import('../components/Target'));
 const ReactLogo = lazy(() => import('../components/ReactLogo'));
 const Cube = lazy(() => import('../components/Cube'));
 const Rings = lazy(() => import('../components/Ring'));
-// const HackerRoom = lazy(() => import('../components/HackerRoom'));
+const HackerRoom = lazy(() => import('../components/HackerRoom'));
 
 export default function Hero() {
   const isSmall = useMediaQuery({ maxWidth: 440 });
@@ -38,13 +38,13 @@ export default function Hero() {
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
-            {/* <HeroCamera isMobile={isMobile}>
+            <HeroCamera isMobile={isMobile}>
               <HackerRoom
                 scale={sizes.deskScale}
                 position={sizes.deskPosition}
                 rotation={[0, -Math.PI, 0]}
               />
-            </HeroCamera> */}
+            </HeroCamera>
             <group>
               <Target position={sizes.targetPosition} />
               <ReactLogo position={sizes.reactLogoPosition} />
