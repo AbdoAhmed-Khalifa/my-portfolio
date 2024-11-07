@@ -10,10 +10,10 @@ import abdelrahman from '/assets/abdelrahman.pdf';
 
 // Lazy-loaded components for better initial load performance
 const HeroCamera = lazy(() => import('../components/HeroCamera'));
-const Target = lazy(() => import('../components/Target'));
-const ReactLogo = lazy(() => import('../components/ReactLogo'));
-const Cube = lazy(() => import('../components/Cube'));
-const Rings = lazy(() => import('../components/Ring'));
+// const Target = lazy(() => import('../components/Target'));
+// const ReactLogo = lazy(() => import('../components/ReactLogo'));
+// const Cube = lazy(() => import('../components/Cube'));
+// const Rings = lazy(() => import('../components/Ring'));
 const HackerRoom = lazy(() => import('../components/HackerRoom'));
 
 export default function Hero() {
@@ -46,12 +46,12 @@ export default function Hero() {
                 rotation={[0, -Math.PI, 0]}
               />
             </HeroCamera>
-            <group>
+            {/* <group>
               <Target position={sizes.targetPosition} />
               <ReactLogo position={sizes.reactLogoPosition} />
               <Cube position={sizes.cubePosition} />
               <Rings position={sizes.ringPosition} />
-            </group>
+            </group> */}
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
           </Suspense>
