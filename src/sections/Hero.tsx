@@ -19,7 +19,8 @@ export default function Hero() {
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
-  console.log('hero');
+  const Mobile = window.screen.width <= 768;
+  console.log('mobile: ', Mobile);
 
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
@@ -35,26 +36,37 @@ export default function Hero() {
       </div>
 
       <div className="w-full h-full absolute inset-0 sm:mt-8">
-        <Canvas className="w-full h-full">
-          <Suspense fallback={<CanvasLoader />}>
-            <PerspectiveCamera makeDefault position={[0, 0, 20]} />
-            <HeroCamera isMobile={isMobile}>
-              <HackerRoom
-                scale={sizes.deskScale}
-                position={sizes.deskPosition}
-                rotation={[0, -Math.PI, 0]}
-              />
-            </HeroCamera>
-            <group>
-              <Target position={sizes.targetPosition} />
-              <ReactLogo position={sizes.reactLogoPosition} />
-              <Cube position={sizes.cubePosition} />
-              <Rings position={sizes.ringPosition} />
-            </group>
-            <ambientLight intensity={1} />
-            <directionalLight position={[10, 10, 10]} intensity={0.5} />
-          </Suspense>
-        </Canvas>
+        {Mobile ? (
+          <div className="relative min-h-screen flex items-center justify-center flex-col">
+            <img
+              src="/assets/hero.png"
+              alt="terminal-bg"
+              loading="lazy"
+              className="absolute inset-0 min-h-screen object-cover w-full h-full"
+            />
+          </div>
+        ) : (
+          <Canvas className="w-full h-full">
+            <Suspense fallback={<CanvasLoader />}>
+              <PerspectiveCamera makeDefault position={[0, 0, 20]} />
+              <HeroCamera isMobile={isMobile}>
+                <HackerRoom
+                  scale={sizes.deskScale}
+                  position={sizes.deskPosition}
+                  rotation={[0, -Math.PI, 0]}
+                />
+              </HeroCamera>
+              <group>
+                <Target position={sizes.targetPosition} />
+                <ReactLogo position={sizes.reactLogoPosition} />
+                <Cube position={sizes.cubePosition} />
+                <Rings position={sizes.ringPosition} />
+              </group>
+              <ambientLight intensity={1} />
+              <directionalLight position={[10, 10, 10]} intensity={0.5} />
+            </Suspense>
+          </Canvas>
+        )}
       </div>
 
       <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
