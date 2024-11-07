@@ -8,7 +8,6 @@ export default function About() {
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   }
-  console.log('about');
 
   return (
     <section className="c-space my-20 " id="about">
@@ -75,7 +74,7 @@ export default function About() {
               <p className="grid-subtext">
                 I'm based in Egypt, with remote work available.
               </p>
-              <a href="#contact">
+              <a href="mailto:abdelrahmanahmedkhalifa99@gmail.com">
                 <Button
                   name="Let's Work Together"
                   isBeam
@@ -114,8 +113,9 @@ export default function About() {
                 <img
                   src={isCopied ? '/assets/tick.svg' : '/assets/copy.svg'}
                   alt="copy"
+                  className="w-6 h-6 cursor-pointer"
                 />
-                <p className="font-medium text-white text-gray_gradient">
+                <p className="font-medium text-white sm:text-base text-sm text-gray_gradient">
                   abdelrahmanahmedkhalifa99@gmail.com
                 </p>
               </div>

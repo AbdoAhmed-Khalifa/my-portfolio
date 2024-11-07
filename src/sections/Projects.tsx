@@ -9,7 +9,6 @@ export default function Projects() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number>(0);
   const projectCount: number = myProjects.length;
   const currentProject = myProjects[selectedProjectIndex];
-  console.log('projects');
 
   function handleNavigation(direction: string) {
     setSelectedProjectIndex(prevIndex => {
