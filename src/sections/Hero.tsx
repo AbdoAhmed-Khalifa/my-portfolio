@@ -37,12 +37,12 @@ export default function Hero() {
 
       <div className="w-full h-full absolute inset-0 sm:mt-8">
         {Mobile ? (
-          <div className="relative min-h-screen flex items-center justify-center flex-col">
+          <div className="relative min-h-screen flex items-center justify-center flex-col ">
             <img
               src="/assets/hero.png"
               alt="terminal-bg"
               loading="lazy"
-              className="absolute inset-0 min-h-screen object-cover w-full h-full"
+              className="absolute  inset-0 min-h-screen  object-cover w-full  h-full"
             />
           </div>
         ) : (
