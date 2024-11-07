@@ -8,6 +8,8 @@ export default function About() {
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   }
+  console.log('about');
+
   return (
     <section className="c-space my-20 " id="about">
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 w-full gap-5">

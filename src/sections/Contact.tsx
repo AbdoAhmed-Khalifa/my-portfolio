@@ -10,6 +10,8 @@ export default function Contact() {
     message: '',
   });
 
+  console.log('contact');
+
   const handleChange = ({
     target: { name, value },
   }: {

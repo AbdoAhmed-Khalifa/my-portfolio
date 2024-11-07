@@ -20,6 +20,7 @@ export default function Hero() {
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+  console.log('hero');
 
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
