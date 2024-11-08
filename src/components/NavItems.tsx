@@ -3,11 +3,9 @@ export default function NavItems() {
   return (
     <ul className="nav-ul">
       {navLinks.map(({ id, name, href }) => (
-        <li key={id} className="nav-li">
-          <a href={href} className="nav-li_a">
-            {name}
-          </a>
-        </li>
+        <a key={id} className="nav-li" href={href}>
+          <span className="nav-li_a">{name}</span>
+        </a>
       ))}
     </ul>
   );
