@@ -66,7 +66,7 @@ export const AnimatedText = ({
         } else {
           setCurrentIndex(0);
         }
-      }, 10000); // Adjust the timeout to match your animation duration
+      }, 5000); // Adjust the timeout to match your animation duration
 
       return () => clearTimeout(timeoutId);
     } else {

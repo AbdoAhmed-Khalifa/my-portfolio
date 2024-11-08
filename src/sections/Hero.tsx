@@ -34,8 +34,8 @@ export default function Hero() {
           <AnimatedText
             el="h2"
             text={['a Web Developer', 'Building Products & Brands']}
-            repeatDelay={20000}
-            // once={true}
+            repeatDelay={10000}
+            once={true}
           />
         </p>
       </div>
