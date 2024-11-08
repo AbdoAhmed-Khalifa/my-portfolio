@@ -7,6 +7,7 @@ import { calculateSizes } from '../constants';
 
 import Button from '../components/Button';
 import abdelrahman from '/assets/abdelrahman.pdf';
+import { AnimatedText } from '../components/AnimatedText';
 
 const HeroCamera = lazy(() => import('../components/HeroCamera'));
 const Target = lazy(() => import('../components/Target'));
@@ -30,7 +31,12 @@ export default function Hero() {
           Hi, I am Abdelrahman <span className="waving-hand">👋</span>
         </p>
         <p className="hero_tag text-gray_gradient">
-          Building Products & Brands
+          <AnimatedText
+            el="h2"
+            text={['a Frontend Developer', 'Building Products & Brands']}
+            repeatDelay={20000}
+            // once={true}
+          />
         </p>
       </div>
 
