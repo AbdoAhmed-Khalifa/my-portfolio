@@ -66,12 +66,12 @@ export default function Contact() {
   //service_s7l4mh9
   return (
     <section className="c-space my-20" id="contact">
-      <div className="relative min-h-dvh flex items-center justify-center flex-col py-16">
+      <div className="relative min-h-dvh flex items-center justify-center flex-col">
         <img
           src="/assets/terminal.png"
           alt="terminal-bg"
           loading="lazy"
-          className="absolute inset-0 min-h-[100px] "
+          className="absolute inset-0 min-h-[110dvh]"
         />
 
         <div className="contact-container pt-20 ">
