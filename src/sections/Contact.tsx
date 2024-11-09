@@ -67,12 +67,12 @@ export default function Contact() {
   return (
     <section className="c-space my-20" id="contact">
       <div className="relative min-h-dvh flex items-center justify-center flex-col">
-        <img
+        {/* <img
           src="/assets/terminal.png"
           alt="terminal-bg"
           loading="lazy"
           className="absolute inset-0 min-h-[110dvh]"
-        />
+        /> */}
 
         <div className="contact-container pt-20 ">
           <h3 className="head-text">Let's talk</h3>
