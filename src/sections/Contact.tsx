@@ -71,7 +71,7 @@ export default function Contact() {
           src="/assets/terminal.png"
           alt="terminal-bg"
           loading="lazy"
-          className="absolute inset-0 min-h-dvh "
+          className="absolute inset-0 min-h-[100px] "
         />
 
         <div className="contact-container pt-20 ">
