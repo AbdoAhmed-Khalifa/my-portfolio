@@ -198,3 +198,10 @@ body {
     transform: rotate(0deg);
   }
 }
+
+.background-image {
+  background-image: url('/assets/terminal.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
