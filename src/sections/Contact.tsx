@@ -10,8 +10,6 @@ export default function Contact() {
     message: '',
   });
 
-  console.log('contact');
-
   const handleChange = ({
     target: { name, value },
   }: {
@@ -47,6 +45,11 @@ export default function Contact() {
         theme: 'colored',
         transition: Zoom,
       });
+      setForm({
+        name: '',
+        email: '',
+        message: '',
+      });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setLoading(false);
@@ -63,7 +66,6 @@ export default function Contact() {
       });
     }
   };
-  //service_s7l4mh9
   return (
     <section className="c-space my-20" id="contact">
       <div className="relative min-h-dvh flex items-center justify-center flex-col ">
