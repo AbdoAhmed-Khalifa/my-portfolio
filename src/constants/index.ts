@@ -126,6 +126,27 @@ export const myProjects = [
       { id: 5, name: 'TailwindCSS', path: '/assets/tailwindcss.png' },
     ],
   },
+  {
+    title: 'Amazon Clone',
+    desc: 'The Amazon Clone is a React-based web application replicating the core features of the Amazon e-commerce platform. It includes product browsing, user authentication, and a dynamic shopping cart. The platform provides a responsive design for seamless use across various devices.',
+    subdesc:
+      'Built with React.js, Tailwind, Firebase for authentication and database management, and payment integration. Hosted on Netlify for a fast and reliable experience.',
+    href: 'https://main--cloning-amazon-website.netlify.app',
+    github: 'https://github.com/AbdoAhmed-Khalifa/Gradution-Project',
+    texture: '/textures/project/project4.mp4',
+    logo: '/assets/project-logo2.png',
+    logoStyle: {
+      backgroundColor: '#13202F',
+      border: '0.2px solid #17293E',
+      boxShadow: '0px 0px 60px 0px #2F6DB54D',
+    },
+    spotlight: '/assets/spotlight2.png',
+    tags: [
+      { id: 1, name: 'React.js', path: '/assets/react.svg' },
+      { id: 4, name: 'Firebase', path: '/assets/firebase.png' },
+      { id: 5, name: 'TailwindCSS', path: '/assets/tailwindcss.png' },
+    ],
+  },
 ];
 
 export const calculateSizes = (
