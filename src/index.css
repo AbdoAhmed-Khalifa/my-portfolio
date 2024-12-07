@@ -205,3 +205,8 @@ body {
   background-size: cover;
   background-position: center;
 }
+
+@font-face {
+  font-family: 'myFont';
+  src: local('myFont'), url('./fonts/myFont.otf'), format('otf');
+}

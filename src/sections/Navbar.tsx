@@ -11,6 +11,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-5 mx-auto c-space">
           <a
             href="#home"
+            style={{ fontFamily: 'myFont' }}
             className="text-neutral-400 font-bold text-xl hover:text-white transition-colors"
           >
             Abdelrahman
