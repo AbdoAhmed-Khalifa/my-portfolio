@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast, Zoom } from 'react-toastify';
+import { motion } from 'framer-motion';
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
@@ -127,7 +128,17 @@ export default function Contact() {
               />
             </label>
 
-            <button className="field-btn" type="submit" disabled={loading}>
+            <motion.button
+              initial={false}
+              whileHover={{ scale: 1.05 }}
+              transition={{
+                duration: 0.4,
+                scale: { type: 'spring', visualDuration: 0.4, bounce: 0.5 },
+              }}
+              className="field-btn"
+              type="submit"
+              disabled={loading}
+            >
               {loading ? 'Sending...' : 'Send Message'}
 
               <img
@@ -135,7 +146,7 @@ export default function Contact() {
                 alt="arrow-up"
                 className="field-btn_arrow"
               />
-            </button>
+            </motion.button>
           </form>
         </div>
       </div>
