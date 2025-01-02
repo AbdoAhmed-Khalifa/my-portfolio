@@ -247,6 +247,10 @@ export const technologies = [
     icon: 'tech-logos/nextjs.png',
   },
   {
+    name: 'Angular',
+    icon: 'tech-logos/angular.png',
+  },
+  {
     name: 'React Native',
     icon: 'tech-logos/react-native.png',
   },
@@ -257,6 +261,10 @@ export const technologies = [
   {
     name: 'Redux Query',
     icon: 'tech-logos/react-query.svg',
+  },
+  {
+    name: 'NgRx',
+    icon: 'tech-logos/ngrx.svg',
   },
   {
     name: 'Tailwind CSS',
