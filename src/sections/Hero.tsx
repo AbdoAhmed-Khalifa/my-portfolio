@@ -5,7 +5,6 @@ import CanvasLoader from '../components/CanvasLoader';
 import { useMediaQuery } from 'react-responsive';
 import { calculateSizes } from '../constants';
 
-import Button from '../components/Button';
 import abdelrahman from '/assets/abdelrahman.pdf';
 import { AnimatedText } from '../components/AnimatedText';
 
@@ -82,11 +81,23 @@ export default function Hero() {
           target="_blank"
           rel="noreferrer"
         >
-          <Button
-            name="Download Resume"
-            isBeam
-            containerClass="sm:w-fit w-full sm:min-w-52"
-          />
+          <button className="btn sm:w-fit w-full sm:min-w-52">
+            Download Resume
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              className="w-5 h-5 animate-bounce"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+              ></path>
+            </svg>
+          </button>
         </a>
       </div>
     </section>

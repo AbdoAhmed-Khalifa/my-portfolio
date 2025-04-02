@@ -74,7 +74,10 @@ export default function About() {
               <p className="grid-subtext">
                 I'm based in Egypt, with remote work available.
               </p>
-              <a href="mailto:abdelrahmanahmedkhalifa99@gmail.com">
+              <a
+                href="https://wa.me/201065058121?text=Hi%20Abdelrahman,%20I'm%20interested%20in%20discussing%20a%20work%20opportunity%20with%20you."
+                target="_blank"
+              >
                 <Button
                   name="Let's Work Together"
                   isBeam

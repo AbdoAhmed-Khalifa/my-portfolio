@@ -1,40 +1,49 @@
 import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import emailjs from '@emailjs/browser';
 import { toast, Zoom } from 'react-toastify';
 import { motion } from 'framer-motion';
+
+// Define Zod validation schema
+const contactSchema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters'),
+  email: z.string().email('Invalid email address'),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
+});
+
+type ContactFormInputs = z.infer<typeof contactSchema>;
+
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
+
+  // Initialize react-hook-form
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormInputs>({
+    resolver: zodResolver(contactSchema),
   });
 
-  const handleChange = ({
-    target: { name, value },
-  }: {
-    target: { name: string; value: string };
-  }) => {
-    setForm({ ...form, [name]: value });
-  };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (data: ContactFormInputs) => {
     setLoading(true);
     try {
       await emailjs.send(
         'service_s7l4mh9',
         'template_0intemb',
         {
-          from_name: form.name,
+          from_name: data.name,
           to_name: 'Abdelrahman',
-          from_email: form.email,
+          from_email: data.email,
           to_email: 'abdelrahmanahmedkhalifa99@gmail.com',
-          message: form.message,
+          message: data.message,
         },
         'yzUWLHr8ssVigigZO'
       );
-      setLoading(false);
       toast.success('Your message has been sent!', {
         position: 'top-center',
         autoClose: 4000,
@@ -42,18 +51,12 @@ export default function Contact() {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
         theme: 'colored',
         transition: Zoom,
       });
-      setForm({
-        name: '',
-        email: '',
-        message: '',
-      });
+      reset(); // Reset form on success
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
-      setLoading(false);
       toast.error('Failed to send email!', {
         position: 'top-center',
         autoClose: 4000,
@@ -61,23 +64,17 @@ export default function Contact() {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
         theme: 'colored',
         transition: Zoom,
       });
     }
+    setLoading(false);
   };
+
   return (
     <section className="c-space my-20" id="contact">
-      <div className="relative min-h-dvh flex items-center justify-center flex-col ">
-        {/* <img
-          src="/assets/terminal.png"
-          alt="terminal-bg"
-          loading="lazy"
-          className="absolute inset-0 min-h-[110dvh]"
-        /> */}
-
-        <div className="contact-container pt-20 ">
+      <div className="relative min-h-dvh flex items-center justify-center flex-col">
+        <div className="contact-container pt-20">
           <h3 className="head-text">Let's talk</h3>
           <p className="text-lg text-white-600 mt-3">
             Whether you’re looking to build a new website, improve your existing
@@ -86,46 +83,46 @@ export default function Contact() {
 
           <form
             ref={formRef}
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             className="mt-12 flex flex-col space-y-7"
           >
             <label className="space-y-3">
               <span className="field-label">Full Name</span>
               <input
                 type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
+                {...register('name')}
                 className="field-input"
                 placeholder="ex., John Doe"
               />
+              {errors.name && (
+                <p className="text-red-500">{errors.name.message}</p>
+              )}
             </label>
 
             <label className="space-y-3">
               <span className="field-label">Email address</span>
               <input
                 type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
+                {...register('email')}
                 className="field-input"
                 placeholder="ex., johndoe@gmail.com"
               />
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
             </label>
 
             <label className="space-y-3">
               <span className="field-label">Your message</span>
               <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
+                {...register('message')}
                 rows={5}
                 className="field-input"
                 placeholder="Share your thoughts or inquiries..."
               />
+              {errors.message && (
+                <p className="text-red-500">{errors.message.message}</p>
+              )}
             </label>
 
             <motion.button
@@ -133,14 +130,13 @@ export default function Contact() {
               whileHover={{ scale: 1.05 }}
               transition={{
                 duration: 0.4,
-                scale: { type: 'spring', visualDuration: 0.4, bounce: 0.5 },
+                scale: { type: 'spring', bounce: 0.5 },
               }}
               className="field-btn"
               type="submit"
               disabled={loading}
             >
               {loading ? 'Sending...' : 'Send Message'}
-
               <img
                 src="/assets/arrow-up.png"
                 alt="arrow-up"
