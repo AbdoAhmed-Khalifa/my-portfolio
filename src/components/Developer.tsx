@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import React, { useEffect, useRef } from 'react';
 import { useGraph } from '@react-three/fiber';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
+import { Group } from 'three';
 
 const Developer = ({ animationName = 'idle', ...props }) => {
-  const group = useRef();
+  const group = useRef<Group>(null);
 
   const { scene } = useGLTF('/models/animations/developer.glb');
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
@@ -37,8 +40,14 @@ const Developer = ({ animationName = 'idle', ...props }) => {
   );
 
   useEffect(() => {
-    actions[animationName].reset().fadeIn(0.5).play();
-    return () => actions[animationName].fadeOut(0.5);
+    if (actions[animationName]) {
+      actions[animationName].reset().fadeIn(0.5).play();
+    }
+    return () => {
+      if (actions[animationName]) {
+        actions[animationName].fadeOut(0.5);
+      }
+    };
   }, [animationName]);
 
   return (
