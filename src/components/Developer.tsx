@@ -48,7 +48,7 @@ const Developer = ({ animationName = 'idle', ...props }) => {
         actions[animationName].fadeOut(0.5);
       }
     };
-  }, [animationName]);
+  }, [animationName, actions]);
 
   return (
     <group ref={group} {...props} dispose={null}>
