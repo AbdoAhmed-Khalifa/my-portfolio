@@ -7,6 +7,7 @@ import Projects from './sections/Projects';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Tech from './sections/Tech';
+import WorkExperience from './sections/Experience';
 export default function App() {
   return (
     <main className="max-w-7xl mx-auto">
@@ -15,6 +16,7 @@ export default function App() {
       <About />
       <Projects />
       <Tech />
+      <WorkExperience />
       <Contact />
       <Footer />
       <ToastContainer

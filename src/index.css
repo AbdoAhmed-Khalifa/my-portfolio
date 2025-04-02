@@ -120,7 +120,11 @@ body {
   }
 
   .work-content_logo {
-    @apply rounded-3xl w-16 h-16 p-2 bg-black-600;
+    @apply rounded-full relative w-16 h-16 bg-black-600 overflow-hidden flex items-center justify-center;
+  }
+
+  .work-content_logo img {
+    @apply w-full h-full object-cover;
   }
 
   .work-content_bar {
