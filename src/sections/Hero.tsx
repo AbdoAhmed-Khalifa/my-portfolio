@@ -4,6 +4,7 @@ import { Suspense, lazy } from 'react';
 import CanvasLoader from '../components/CanvasLoader';
 import { useMediaQuery } from 'react-responsive';
 import { calculateSizes } from '../constants';
+import { motion } from 'framer-motion';
 
 import abdelrahman from '/assets/abdelrahman.pdf';
 import { AnimatedText } from '../components/AnimatedText';
@@ -24,31 +25,61 @@ export default function Hero() {
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
   return (
-    <section className="min-h-screen w-full flex flex-col relative" id="home">
-      <div className="w-full mx-auto flex flex-col mt-20 sm:mt-36 c-space gap-3">
-        <p className="sm:text-3xl text-2xl font-medium text-white font-generalsans text-center">
-          Hi, I am Abdelrahman <span className="waving-hand">👋</span>
-        </p>
-        <p className="hero_tag text-gray_gradient">
+    <section className="min-h-screen w-full flex flex-col relative background-pattern" id="home">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full mx-auto flex flex-col mt-20 sm:mt-36 c-space gap-4 relative z-10"
+      >
+        <motion.p 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="sm:text-3xl text-2xl font-medium text-white font-generalsans text-center"
+        >
+          Hi, I am{' '}
+          <span className="animated-gradient font-bold">Abdelrahman</span>{' '}
+          <span className="waving-hand">👋</span>
+        </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="hero_tag text-gray_gradient"
+        >
           <AnimatedText
-            el="h2"
+            el="h1"
             text={['a Web Developer', 'Building Products & Brands']}
             repeatDelay={10000}
             once={true}
           />
-        </p>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className="w-full h-full absolute inset-0 sm:mt-8">
         {Mobile ? (
-          <div className="relative min-h-screen flex items-center justify-center flex-col ">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="relative min-h-screen flex items-center justify-center flex-col"
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
             <img
               src="/assets/hero.png"
               alt="terminal-bg"
               loading="lazy"
-              className="absolute  inset-0 min-h-screen  object-cover w-full  h-full"
+              className="absolute inset-0 min-h-screen object-cover w-full h-full"
             />
-          </div>
+          </motion.div>
         ) : (
           <Canvas className="w-full h-full">
             <Suspense fallback={<CanvasLoader />}>
@@ -73,33 +104,44 @@ export default function Hero() {
         )}
       </div>
 
-      <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+        className="absolute bottom-7 left-0 right-0 w-full z-10 c-space"
+      >
         <a
-          className="w-fit"
+          className="w-fit block mx-auto"
           href={abdelrahman}
           download="abdelrahman-cv.pdf"
           target="_blank"
           rel="noreferrer"
         >
-          <button className="btn sm:w-fit w-full sm:min-w-52">
+          <motion.button 
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn sm:w-fit w-full sm:min-w-60 glow-effect"
+          >
             Download Resume
-            <svg
+            <motion.svg
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="2"
+              strokeWidth="2"
               stroke="currentColor"
-              className="w-5 h-5 animate-bounce"
+              className="w-5 h-5"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-              ></path>
-            </svg>
-          </button>
+              />
+            </motion.svg>
+          </motion.button>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 }
