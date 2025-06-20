@@ -145,7 +145,7 @@ body {
   }
 
   .work-content_container {
-    @apply grid grid-cols-[auto_1fr] items-start gap-6 transition-all ease-in-out duration-500 cursor-pointer hover:bg-white/5 rounded-xl sm:px-6 px-4 py-4 group;
+    @apply grid grid-cols-[auto_1fr] items-start gap-6 transition-all ease-in-out duration-500 cursor-pointer hover:bg-white/5 rounded-xl sm:px-6 px-4 py-4;
   }
 
   .work-content_logo {
