@@ -193,7 +193,7 @@ export const workExperiences = [
     id: 1,
     name: 'FTL Group "eratesTM"',
     pos: 'Front-End Developer',
-    duration: 'Jan 2024 - present',
+    duration: 'Jan 2025 - present',
     title:
       'Developed responsive and high-performance front-end solutions using technologies like React, Next.js, TypeScript,Framer motion and Tailwind CSS for multi platforms.',
     icon: '/assets/ftl.jpg',
@@ -203,7 +203,7 @@ export const workExperiences = [
     id: 2,
     name: 'Information Technology Institute',
     pos: 'External Instructor',
-    duration: 'May 2024 - Jan 2024',
+    duration: 'May 2024 - Jan 2025',
     title:
       'Delivered training on front-end development, covering HTML5, CSS3, JavaScript, and modern frameworks like React and Angular, to enhance students’ technical skills.',
     icon: '/assets/iti.png',
