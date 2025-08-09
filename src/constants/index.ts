@@ -16,6 +16,16 @@ export const navLinks = [
   },
   {
     id: 4,
+    name: 'Technologies',
+    href: '#technologies',
+  },
+  {
+    id: 5,
+    name: 'Experience',
+    href: '#work',
+  },
+  {
+    id: 6,
     name: 'Contact',
     href: '#contact',
   },
@@ -191,11 +201,11 @@ export const calculateSizes = (
 export const workExperiences = [
   {
     id: 1,
-    name: 'FTL Group "eratesTM"',
+    name: 'FTL Group',
     pos: 'Front-End Developer',
-    duration: 'Jan 2025 - present',
+    duration: 'Jan 2025 - Present',
     title:
-      'Developed responsive and high-performance front-end solutions using technologies like React, Next.js, TypeScript,Framer motion and Tailwind CSS for multi platforms.',
+      'Built and maintained responsive logistics platforms using React.js and Next.js. Applied clean code practices, reduced UI bugs, and optimized page performance (−1.5s load time). Leveraged state management and modern styling libraries.',
     icon: '/assets/ftl.jpg',
     animation: 'victory',
   },
@@ -205,7 +215,7 @@ export const workExperiences = [
     pos: 'External Instructor',
     duration: 'May 2024 - Jan 2025',
     title:
-      'Delivered training on front-end development, covering HTML5, CSS3, JavaScript, and modern frameworks like React and Angular, to enhance students’ technical skills.',
+      'Taught 50+ students HTML, CSS, JavaScript, and React fundamentals. Supervised 10+ practical assignments, improving coding confidence and problem‑solving skills.',
     icon: '/assets/iti.png',
     animation: 'clapping',
   },
@@ -215,7 +225,7 @@ export const workExperiences = [
     pos: 'Front-End Development Intern',
     duration: 'Nov 2023 - Apr 2024',
     title:
-      'Gained hands-on experience in front-end development, working on projects involving React, Next.js, and TypeScript, while collaborating with a team to build user-friendly interfaces.',
+      'Hands‑on front‑end experience across React, Next.js, and TypeScript, collaborating with teams to build user‑friendly interfaces.',
     icon: '/assets/iti.png',
     animation: 'salute',
   },
@@ -258,12 +268,20 @@ export const technologies = [
     icon: 'tech-logos/redux.png',
   },
   {
-    name: 'Redux Query',
+    name: 'Zustand',
+    icon: 'tech-logos/Zustand.svg',
+  },
+  {
+    name: 'React Query',
     icon: 'tech-logos/react-query.svg',
   },
   {
     name: 'NgRx',
     icon: 'tech-logos/ngrx.svg',
+  },
+  {
+    name: 'Framer Motion',
+    icon: '/assets/framer.svg',
   },
   {
     name: 'Tailwind CSS',
@@ -276,6 +294,14 @@ export const technologies = [
   {
     name: 'Styled Components',
     icon: 'tech-logos/styled-components.jpeg',
+  },
+  {
+    name: 'shadcn/ui',
+    icon: 'tech-logos/shadcn.svg',
+  },
+  {
+    name: 'React Testing Library',
+    icon: 'tech-logos/react-test.png',
   },
   {
     name: 'Firebase',
@@ -296,6 +322,10 @@ export const technologies = [
   {
     name: 'git',
     icon: 'tech-logos/git.png',
+  },
+  {
+    name: 'GitHub',
+    icon: '/assets/github.svg',
   },
   {
     name: 'Jest',

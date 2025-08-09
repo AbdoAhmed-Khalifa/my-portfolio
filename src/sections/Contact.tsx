@@ -93,6 +93,7 @@ export default function Contact() {
                 {...register('name')}
                 className="field-input"
                 placeholder="ex., John Doe"
+                aria-invalid={!!errors.name}
               />
               {errors.name && (
                 <p className="text-red-500">{errors.name.message}</p>
@@ -106,6 +107,7 @@ export default function Contact() {
                 {...register('email')}
                 className="field-input"
                 placeholder="ex., johndoe@gmail.com"
+                aria-invalid={!!errors.email}
               />
               {errors.email && (
                 <p className="text-red-500">{errors.email.message}</p>
@@ -119,6 +121,7 @@ export default function Contact() {
                 rows={5}
                 className="field-input"
                 placeholder="Share your thoughts or inquiries..."
+                aria-invalid={!!errors.message}
               />
               {errors.message && (
                 <p className="text-red-500">{errors.message.message}</p>

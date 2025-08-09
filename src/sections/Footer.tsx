@@ -52,9 +52,7 @@ export default function Footer() {
           </a>
         </SocialButton>
       </div>
-      <p className="text-white-500">
-        © 2024 Abdelrahman. All rights reserved.{' '}
-      </p>
+      <p className="text-white-500">© 2024 Abdelrahman. All rights reserved.</p>
     </footer>
   );
 }

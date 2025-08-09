@@ -1,29 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavItems from '../components/NavItems';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setHasScrolled(window.scrollY > 4);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMenu = () => setIsOpen(prevIsOpen => !prevIsOpen);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/90">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/60 ${
+        hasScrolled
+          ? 'shadow-lg shadow-black-200/30 border-b border-black-300'
+          : 'bg-black/60'
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center py-5 mx-auto c-space">
+        <div className="flex justify-between items-center py-4 md:py-5 mx-auto c-space">
           <a
             href="#home"
             style={{ fontFamily: 'myFont' }}
-            className="text-neutral-400 font-bold text-xl hover:text-white transition-colors"
+            className="text-white font-bold text-xl tracking-wide"
+            aria-label="Go to home section"
           >
             Abdelrahman
           </a>
           <button
             onClick={toggleMenu}
             className="text-neutral-400 hover:text-white focus:outline-none sm:hidden flex"
-            aria-label="toggle menu"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
           >
             <img
               src={isOpen ? 'assets/close.svg' : 'assets/menu.svg'}
-              alt="toggle"
+              alt="toggle menu icon"
               className="w-6 h-6"
             />
           </button>

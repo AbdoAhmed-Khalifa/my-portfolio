@@ -56,21 +56,38 @@ export default function Projects() {
                 </div>
               ))}
             </div>
-            <a
-              href={
-                currentProject.href
-                  ? currentProject.href
-                  : currentProject.github
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 cursor-pointer text-white-600"
-            >
-              <p>
-                {currentProject.href ? 'Check Live Site' : 'View Source Code'}
-              </p>
-              <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
-            </a>
+            <div className="flex items-center gap-4">
+              {currentProject.href && (
+                <a
+                  href={currentProject.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 cursor-pointer text-white hover:text-white-800 transition-colors"
+                >
+                  <p>Live</p>
+                  <img
+                    src="/assets/arrow-up.png"
+                    alt="open live"
+                    className="w-3 h-3"
+                  />
+                </a>
+              )}
+              {currentProject.github && (
+                <a
+                  href={currentProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 cursor-pointer text-white-600 hover:text-white transition-colors"
+                >
+                  <p>Code</p>
+                  <img
+                    src="/assets/arrow-up.png"
+                    alt="open code"
+                    className="w-3 h-3"
+                  />
+                </a>
+              )}
+            </div>
           </div>
           <div className="flex justify-between items-center mt-7">
             <button

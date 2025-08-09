@@ -25,7 +25,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen w-full flex flex-col relative" id="home">
-      <div className="w-full mx-auto flex flex-col mt-20 sm:mt-36 c-space gap-3">
+      <div className="w-full mx-auto flex flex-col mt-24 sm:mt-40 c-space gap-3">
         <p className="sm:text-3xl text-2xl font-medium text-white font-generalsans text-center">
           Hi, I am Abdelrahman <span className="waving-hand">👋</span>
         </p>
@@ -74,31 +74,33 @@ export default function Hero() {
       </div>
 
       <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
-        <a
-          className="w-fit"
-          href={abdelrahman}
-          download="abdelrahman-cv.pdf"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button className="btn sm:w-fit w-full sm:min-w-52">
-            Download Resume
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              className="w-5 h-5 animate-bounce"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-              ></path>
-            </svg>
-          </button>
-        </a>
+        <div className="flex justify-center">
+          <a
+            className="w-fit"
+            href={abdelrahman}
+            download="abdelrahman-cv.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <button className="btn sm:w-fit w-full sm:min-w-52">
+              Download Resume
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="w-5 h-5 animate-bounce"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+                ></path>
+              </svg>
+            </button>
+          </a>
+        </div>
       </div>
     </section>
   );

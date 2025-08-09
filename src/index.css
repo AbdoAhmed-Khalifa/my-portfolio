@@ -13,6 +13,11 @@ body {
   font-family: 'General Sans', sans-serif;
 }
 
+/* account for fixed header height when using anchor links */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
 @layer utilities {
   .c-space {
     @apply sm:px-10 px-5;
@@ -27,7 +32,7 @@ body {
   }
 
   .nav-li {
-    @apply text-neutral-400 hover:text-white font-generalsans max-sm:hover:bg-black-500 max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+    @apply text-neutral-400 hover:text-white font-generalsans rounded-md py-2 px-2 transition-colors max-sm:w-full max-sm:px-5 max-sm:hover:bg-black-500/40;
   }
 
   .nav-li_a {
@@ -44,7 +49,7 @@ body {
 
   /* button component */
   .btn {
-    @apply flex gap-4 items-center justify-center cursor-pointer p-3 rounded-md bg-black-300  transition-all active:scale-95 text-white mx-auto;
+    @apply flex gap-3 items-center justify-center cursor-pointer px-4 py-3 rounded-md bg-black-300 transition-all active:scale-95 text-white mx-auto border border-black-500/40 hover:border-white/10 hover:bg-black-500/60 shadow-lg shadow-black-200/20;
   }
 
   .btn-ping {

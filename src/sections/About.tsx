@@ -39,8 +39,11 @@ export default function About() {
             <div>
               <p className="grid-headtext">Tech Stack</p>
               <p className="grid-subtext">
-                I specialize in JavaScript/TypeScript with focus in React and
-                Next.js ecosystem. with knowledge of Node.js.
+                JavaScript/TypeScript, React.js, Next.js, and Node.js. State
+                management with Redux Toolkit and React Query; styling with
+                Tailwind CSS, Styled Components, and Sass; animations with
+                Framer Motion and GSAP. Comfortable with Firebase, Supabase, and
+                MongoDB.
               </p>
             </div>
           </div>
@@ -68,11 +71,9 @@ export default function About() {
               />
             </div>
             <div>
-              <p className="grid-headtext">
-                I can work remotely across most timezones
-              </p>
+              <p className="grid-headtext">Availability</p>
               <p className="grid-subtext">
-                I'm based in Egypt, with remote work available.
+                Open to remote, hybrid, or on‑site roles.
               </p>
               <a
                 href="https://wa.me/201065058121?text=Hi%20Abdelrahman,%20I'm%20interested%20in%20discussing%20a%20work%20opportunity%20with%20you."
