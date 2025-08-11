@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import emailjs from '@emailjs/browser';
 import { toast, Zoom } from 'react-toastify';
 import { motion } from 'framer-motion';
 
@@ -10,6 +9,8 @@ import { motion } from 'framer-motion';
 const contactSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   email: z.string().email('Invalid email address'),
+  phone: z.string().optional(),
+  subject: z.string().min(5, 'Subject must be at least 5 characters'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
 });
 
@@ -32,18 +33,24 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormInputs) => {
     setLoading(true);
     try {
-      await emailjs.send(
-        'service_s7l4mh9',
-        'template_0intemb',
-        {
-          from_name: data.name,
-          to_name: 'Abdelrahman',
-          from_email: data.email,
-          to_email: 'abdelrahmanahmedkhalifa99@gmail.com',
-          message: data.message,
+      const response = await fetch('https://backend-email-one.vercel.app', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        'yzUWLHr8ssVigigZO'
-      );
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || '',
+          subject: data.subject,
+          message: data.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       toast.success('Your message has been sent!', {
         position: 'top-center',
         autoClose: 4000,
@@ -55,9 +62,8 @@ export default function Contact() {
         transition: Zoom,
       });
       reset(); // Reset form on success
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      toast.error('Failed to send email!', {
+    } catch {
+      toast.error('Failed to send message!', {
         position: 'top-center',
         autoClose: 4000,
         hideProgressBar: false,
@@ -77,8 +83,8 @@ export default function Contact() {
         <div className="contact-container pt-20">
           <h3 className="head-text">Let's talk</h3>
           <p className="text-lg text-white-600 mt-3">
-            Whether you’re looking to build a new website, improve your existing
-            platform, or bring a unique project to life, I’m here to help.
+            Whether you're looking to build a new website, improve your existing
+            platform, or bring a unique project to life, I'm here to help.
           </p>
 
           <form
@@ -111,6 +117,34 @@ export default function Contact() {
               />
               {errors.email && (
                 <p className="text-red-500">{errors.email.message}</p>
+              )}
+            </label>
+
+            <label className="space-y-3">
+              <span className="field-label">Phone number (optional)</span>
+              <input
+                type="tel"
+                {...register('phone')}
+                className="field-input"
+                placeholder="ex., +1234567890"
+                aria-invalid={!!errors.phone}
+              />
+              {errors.phone && (
+                <p className="text-red-500">{errors.phone.message}</p>
+              )}
+            </label>
+
+            <label className="space-y-3">
+              <span className="field-label">Subject</span>
+              <input
+                type="text"
+                {...register('subject')}
+                className="field-input"
+                placeholder="ex., Project Inquiry"
+                aria-invalid={!!errors.subject}
+              />
+              {errors.subject && (
+                <p className="text-red-500">{errors.subject.message}</p>
               )}
             </label>
 
