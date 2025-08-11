@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { toast, Zoom } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
 // Define Zod validation schema
@@ -34,7 +34,7 @@ export default function Contact() {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://backend-email-one.vercel.app/api/send-email',
+        'https://backend-email-one.vercel.app/contact',
         {
           method: 'POST',
           headers: {
@@ -54,27 +54,34 @@ export default function Contact() {
         throw new Error('Failed to send message');
       }
 
+      // Send confirmation email to user
+      try {
+        await fetch('https://backend-email-one.vercel.app/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: data.email,
+            subject: 'Thank you for contacting me!',
+            text: `Hi ${data.name},\n\nThank you for reaching out! I've received your message and will get back to you soon.\n\nBest regards,\nAbdelrahman`,
+            html: `<p>Hi ${data.name},</p><p>Thank you for reaching out! I've received your message and will get back to you soon.</p><p>Best regards,<br>Abdelrahman</p>`,
+          }),
+        });
+      } catch {
+        // Don't show error for confirmation email failure
+        console.log('Confirmation email failed to send');
+      }
+
       toast.success('Your message has been sent!', {
+        duration: 4000,
         position: 'top-center',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'colored',
-        transition: Zoom,
       });
       reset(); // Reset form on success
     } catch {
       toast.error('Failed to send message!', {
+        duration: 4000,
         position: 'top-center',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'colored',
-        transition: Zoom,
       });
     }
     setLoading(false);

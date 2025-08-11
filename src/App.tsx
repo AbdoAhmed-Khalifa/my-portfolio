@@ -18,18 +18,11 @@ export default function App() {
       <Experience />
       <Contact />
       <Footer />
-      <ToastContainer
+      <Toaster
         position="top-center"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Zoom}
+        toastOptions={{
+          duration: 4000,
+        }}
       />
     </main>
   );
