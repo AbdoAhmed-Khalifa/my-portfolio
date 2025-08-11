@@ -4,8 +4,7 @@ import Hero from './sections/Hero';
 import Footer from './sections/Footer';
 import Navbar from './sections/Navbar';
 import Projects from './sections/Projects';
-import { ToastContainer, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 import Tech from './sections/Tech';
 import Experience from './sections/Experience';
 export default function App() {
