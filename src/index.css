@@ -8,14 +8,43 @@
   scroll-behavior: smooth;
 }
 
+/* Performance optimizations for mobile */
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
 body {
   background: #010103;
   font-family: 'General Sans', sans-serif;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimize scrolling performance */
+main {
+  will-change: scroll-position;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* account for fixed header height when using anchor links */
 section[id] {
   scroll-margin-top: 88px;
+}
+
+/* Optimize 3D canvas performance on mobile */
+canvas {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @layer utilities {

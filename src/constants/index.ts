@@ -332,3 +332,21 @@ export const technologies = [
     icon: 'tech-logos/Jest.png',
   },
 ];
+
+// Performance optimization utilities
+export const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  ) || window.innerWidth <= 768;
+};
+
+export const getPerformanceConfig = () => {
+  const isMobile = isMobileDevice();
+  return {
+    isMobile,
+    animationFPS: isMobile ? 30 : 60,
+    enableComplexAnimations: !isMobile,
+    enablePointerTracking: !isMobile,
+    reduceMotion: isMobile,
+  };
+};
