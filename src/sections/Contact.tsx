@@ -34,7 +34,7 @@ export default function Contact() {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://backend-email-one.vercel.app/contact',
+        'https://backend-email-one.vercel.app/api/contact',
         {
           method: 'POST',
           headers: {
@@ -56,7 +56,7 @@ export default function Contact() {
 
       // Send confirmation email to user
       try {
-        await fetch('https://backend-email-one.vercel.app/send-email', {
+        await fetch('https://backend-email-one.vercel.app/api/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
