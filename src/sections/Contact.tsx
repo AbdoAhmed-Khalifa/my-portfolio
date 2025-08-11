@@ -33,19 +33,22 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormInputs) => {
     setLoading(true);
     try {
-      const response = await fetch('https://backend-email-one.vercel.app', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone || '',
-          subject: data.subject,
-          message: data.message,
-        }),
-      });
+      const response = await fetch(
+        'https://backend-email-one.vercel.app/api/send-email',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            phone: data.phone || '',
+            subject: data.subject,
+            message: data.message,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Failed to send message');
