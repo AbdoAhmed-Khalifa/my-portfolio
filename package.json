@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:seo": "node scripts/generate-sitemap.js && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
