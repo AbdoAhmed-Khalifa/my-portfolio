@@ -1,40 +1,16 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import NavItems from '../components/NavItems';
-import usePerformance from '../hooks/usePerformance';
-
-// Throttle function to limit scroll event frequency
-function throttle<T extends (...args: unknown[]) => void>(
-  func: T,
-  limit: number
-): T {
-  let inThrottle: boolean;
-  return ((...args: unknown[]) => {
-    if (!inThrottle) {
-      func(...args);
-      inThrottle = true;
-      setTimeout(() => (inThrottle = false), limit);
-    }
-  }) as T;
-}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const { scrollThrottle } = usePerformance();
-
-  const onScroll = useMemo(
-    () =>
-      throttle(() => {
-        setHasScrolled(window.scrollY > 4);
-      }, scrollThrottle),
-    [scrollThrottle]
-  );
 
   useEffect(() => {
+    const onScroll = () => setHasScrolled(window.scrollY > 4);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, [onScroll]);
+  }, []);
 
   const toggleMenu = () => setIsOpen(prevIsOpen => !prevIsOpen);
 

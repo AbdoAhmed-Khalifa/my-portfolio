@@ -3,9 +3,8 @@
 // @ts-nocheck
 
 import { useFrame } from '@react-three/fiber';
-import { ReactNode, useRef, useMemo } from 'react';
+import { ReactNode, useRef } from 'react';
 import { easing } from 'maath';
-
 export default function HeroCamera({
   children,
   isMobile,
@@ -14,37 +13,19 @@ export default function HeroCamera({
   isMobile: boolean;
 }) {
   const groupRef = useRef();
-
-  // Optimize animation parameters for mobile
-  const animationConfig = useMemo(
-    () => ({
-      damping: isMobile ? 0.5 : 0.25, // Slower damping on mobile
-      pointerSensitivity: isMobile ? 0 : 1, // Disable pointer tracking on mobile
-    }),
-    [isMobile]
-  );
-
   useFrame((state, delta) => {
-    easing.damp3(
-      state.camera.position,
-      [0, 0, 20],
-      animationConfig.damping,
-      delta
-    );
-
-    // Only apply pointer-based rotation on desktop
-    if (!isMobile && animationConfig.pointerSensitivity > 0) {
+    easing.damp3(state.camera.position, [0, 0, 20], 0.25, delta);
+    if (!isMobile) {
       easing.dampE(
         groupRef.current.rotation,
         [-state.pointer.y / 3, -state.pointer.x / 5, 0],
-        animationConfig.damping,
+        0.25,
         delta
       );
     }
   });
-
   return (
-    <group ref={groupRef} scale={isMobile ? 0.8 : 1.2}>
+    <group ref={groupRef} scale={isMobile ? 1 : 1.2}>
       {children}
     </group>
   );

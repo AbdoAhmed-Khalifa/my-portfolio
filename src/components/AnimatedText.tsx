@@ -2,8 +2,7 @@
 
 // @ts-nocheck
 import { motion, useInView, useAnimation, Variant } from 'framer-motion';
-import { useEffect, useRef, useState, useMemo } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useEffect, useRef, useState } from 'react';
 
 type AnimatedTextProps = {
   text: string | string[];
@@ -31,19 +30,6 @@ const defaultAnimations = {
   },
 };
 
-// Simplified animations for mobile
-const mobileAnimations = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
-
 export const AnimatedText = ({
   text,
   el: Wrapper = 'p',
@@ -54,24 +40,16 @@ export const AnimatedText = ({
 }: AnimatedTextProps) => {
   const controls = useAnimation();
   const textArray = Array.isArray(text) ? text : [text];
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); // Track the current index of text
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5, once });
-
-  // Detect mobile for performance optimization
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-
-  // Use simplified animations on mobile
-  const animations = useMemo(() => {
-    return isMobile ? mobileAnimations : animation;
-  }, [isMobile, animation]);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
 
     const show = () => {
       controls.start('visible');
-      if (repeatDelay && !isMobile) {
+      if (repeatDelay) {
         timeout = setTimeout(async () => {
           await controls.start('hidden');
           controls.start('visible');
@@ -81,47 +59,22 @@ export const AnimatedText = ({
 
     if (isInView) {
       show();
-      // Only cycle text on desktop for better mobile performance
-      if (!isMobile) {
-        const timeoutId = setTimeout(() => {
-          if (currentIndex < textArray.length - 1) {
-            setCurrentIndex(currentIndex + 1);
-          } else {
-            setCurrentIndex(0);
-          }
-        }, 5000);
+      // Increment the index after the animation is visible
+      const timeoutId = setTimeout(() => {
+        if (currentIndex < textArray.length - 1) {
+          setCurrentIndex(currentIndex + 1); // Move to the next element
+        } else {
+          setCurrentIndex(0);
+        }
+      }, 5000); // Adjust the timeout to match your animation duration
 
-        return () => clearTimeout(timeoutId);
-      }
+      return () => clearTimeout(timeoutId);
     } else {
       controls.start('hidden');
     }
 
     return () => clearTimeout(timeout);
-  }, [
-    isInView,
-    currentIndex,
-    isMobile,
-    controls,
-    repeatDelay,
-    textArray.length,
-  ]);
-
-  // On mobile, show all text without character-by-character animation
-  if (isMobile) {
-    return (
-      <Wrapper className={className}>
-        <motion.span
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={animations}
-        >
-          {textArray[currentIndex]}
-        </motion.span>
-      </Wrapper>
-    );
-  }
+  }, [isInView, currentIndex]); // Re-run effect when currentIndex changes
 
   return (
     <Wrapper className={className}>
@@ -136,6 +89,7 @@ export const AnimatedText = ({
         }}
         aria-hidden
       >
+        {/* Only render the current element at currentIndex */}
         <span className="block">
           {textArray[currentIndex]?.split(' ').map((word, wordIndex) => (
             <span className="inline-block" key={`${word}-${wordIndex}`}>
@@ -143,7 +97,7 @@ export const AnimatedText = ({
                 <motion.span
                   key={`${char}-${charIndex}`}
                   className="inline-block"
-                  variants={animations}
+                  variants={animation}
                 >
                   {char}
                 </motion.span>

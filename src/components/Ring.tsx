@@ -4,8 +4,7 @@
 import { useGSAP } from '@gsap/react';
 import { Center, useTexture } from '@react-three/drei';
 import gsap from 'gsap';
-import { useCallback, useRef, useMemo } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useCallback, useRef } from 'react';
 
 const Rings = ({ position }) => {
   const refList = useRef([]);
@@ -17,19 +16,6 @@ const Rings = ({ position }) => {
 
   const texture = useTexture('textures/rings.png');
 
-  // Detect mobile for performance optimization
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-
-  // Optimize animation parameters for mobile
-  const animationConfig = useMemo(
-    () => ({
-      duration: isMobile ? 4 : 2.5,
-      stagger: isMobile ? 0.3 : 0.15,
-      scale: isMobile ? 0.3 : 0.5,
-    }),
-    [isMobile]
-  );
-
   useGSAP(
     () => {
       if (refList.current.length === 0) return;
@@ -38,45 +24,32 @@ const Rings = ({ position }) => {
         r.position.set(position[0], position[1], position[2]);
       });
 
-      // Simplify animations on mobile
-      if (isMobile) {
-        gsap.to(
+      gsap
+        .timeline({
+          repeat: -1,
+          repeatDelay: 0.5,
+        })
+        .to(
           refList.current.map(r => r.rotation),
           {
             y: `+=${Math.PI * 2}`,
-            duration: animationConfig.duration,
-            repeat: -1,
-            ease: 'none',
+            x: `-=${Math.PI * 2}`,
+            duration: 2.5,
+            stagger: {
+              each: 0.15,
+            },
           }
         );
-      } else {
-        gsap
-          .timeline({
-            repeat: -1,
-            repeatDelay: 0.5,
-          })
-          .to(
-            refList.current.map(r => r.rotation),
-            {
-              y: `+=${Math.PI * 2}`,
-              x: `-=${Math.PI * 2}`,
-              duration: animationConfig.duration,
-              stagger: {
-                each: animationConfig.stagger,
-              },
-            }
-          );
-      }
     },
     {
-      dependencies: [position, isMobile, animationConfig],
+      dependencies: position,
     }
   );
 
   return (
     <Center>
-      <group scale={animationConfig.scale}>
-        {Array.from({ length: isMobile ? 2 : 4 }, (_, index) => (
+      <group scale={0.5}>
+        {Array.from({ length: 4 }, (_, index) => (
           <mesh key={index} ref={getRef}>
             <torusGeometry args={[(index + 1) * 0.5, 0.1]}></torusGeometry>
             <meshMatcapMaterial matcap={texture} toneMapped={false} />
