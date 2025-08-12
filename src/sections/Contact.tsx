@@ -64,7 +64,6 @@ export default function Contact() {
           body: JSON.stringify({
             to: data.email,
             subject: 'Thank you for contacting me!',
-            text: `Hi ${data.name},\n\nThank you for reaching out! I've received your message and will get back to you soon.\n\nBest regards,\nAbdelrahman`,
           }),
         });
       } catch {
