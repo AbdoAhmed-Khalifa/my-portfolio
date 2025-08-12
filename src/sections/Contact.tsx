@@ -53,29 +53,11 @@ export default function Contact() {
       if (!response.ok) {
         throw new Error('Failed to send message');
       }
-
-      // Send confirmation email to user
-      try {
-        await fetch('https://backend-email-one.vercel.app/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            to: data.email,
-            subject: 'Thank you for contacting me!',
-          }),
-        });
-      } catch {
-        // Don't show error for confirmation email failure
-        console.log('Confirmation email failed to send');
-      }
-
       toast.success('Your message has been sent!', {
         duration: 4000,
         position: 'top-center',
       });
-      reset(); // Reset form on success
+      reset();
     } catch {
       toast.error('Failed to send message!', {
         duration: 4000,
