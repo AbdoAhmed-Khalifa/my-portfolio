@@ -65,7 +65,6 @@ export default function Contact() {
             to: data.email,
             subject: 'Thank you for contacting me!',
             text: `Hi ${data.name},\n\nThank you for reaching out! I've received your message and will get back to you soon.\n\nBest regards,\nAbdelrahman`,
-            html: `<p>Hi ${data.name},</p><p>Thank you for reaching out! I've received your message and will get back to you soon.</p><p>Best regards,<br>Abdelrahman</p>`,
           }),
         });
       } catch {
