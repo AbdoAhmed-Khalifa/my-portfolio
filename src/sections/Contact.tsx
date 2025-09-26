@@ -4,6 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
+import { Section } from '../components/ui/Section';
+import { Card } from '../components/ui/Card';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { fadeInUp, staggerContainer } from '../utils/animations';
+import type { ContactFormData } from '../types';
 
 // Define Zod validation schema
 const contactSchema = z.object({
@@ -13,8 +18,6 @@ const contactSchema = z.object({
   subject: z.string().min(5, 'Subject must be at least 5 characters'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
 });
-
-type ContactFormInputs = z.infer<typeof contactSchema>;
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -26,11 +29,11 @@ export default function Contact() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ContactFormInputs>({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = async (data: ContactFormInputs) => {
+  const onSubmit = async (data: ContactFormData) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -68,19 +71,173 @@ export default function Contact() {
   };
 
   return (
-    <section className="c-space mb-20" id="contact">
+    <Section 
+      id="contact" 
+      title="Let's Work Together" 
+      subtitle="Ready to bring your ideas to life? Let's discuss your next project"
+    >
       <div className="relative min-h-dvh flex items-center justify-center flex-col">
-        <div className="contact-container pt-20">
-          <h3 className="head-text">Let's talk</h3>
-          <p className="text-lg text-white-600 mt-3">
-            Whether you're looking to build a new website, improve your existing
-            platform, or bring a unique project to life, I'm here to help.
-          </p>
+        <motion.div 
+          className="contact-container"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <Card className="max-w-2xl mx-auto">
+            <motion.p 
+              className="text-lg text-white-600 text-center mb-8 leading-relaxed"
+              variants={fadeInUp}
+            >
+              Whether you're looking to build a new website, improve your existing
+              platform, or bring a unique project to life, I'm here to help.
+            </motion.p>
 
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit(onSubmit)}
-            className="mt-12 flex flex-col space-y-7"
+            <motion.form
+              ref={formRef}
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col space-y-6"
+              variants={fadeInUp}
+            >
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.label className="space-y-3" variants={fadeInUp}>
+                  <span className="field-label">Full Name *</span>
+                  <input
+                    type="text"
+                    {...register('name')}
+                    className="field-input"
+                    placeholder="John Doe"
+                    aria-invalid={!!errors.name}
+                  />
+                  {errors.name && (
+                    <motion.p 
+                      className="text-red-400 text-sm"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.name.message}
+                    </motion.p>
+                  )}
+                </motion.label>
+
+                <motion.label className="space-y-3" variants={fadeInUp}>
+                  <span className="field-label">Email Address *</span>
+                  <input
+                    type="email"
+                    {...register('email')}
+                    className="field-input"
+                    placeholder="john@example.com"
+                    aria-invalid={!!errors.email}
+                  />
+                  {errors.email && (
+                    <motion.p 
+                      className="text-red-400 text-sm"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.email.message}
+                    </motion.p>
+                  )}
+                </motion.label>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.label className="space-y-3" variants={fadeInUp}>
+                  <span className="field-label">Phone Number</span>
+                  <input
+                    type="tel"
+                    {...register('phone')}
+                    className="field-input"
+                    placeholder="+1 (555) 123-4567"
+                    aria-invalid={!!errors.phone}
+                  />
+                  {errors.phone && (
+                    <motion.p 
+                      className="text-red-400 text-sm"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.phone.message}
+                    </motion.p>
+                  )}
+                </motion.label>
+
+                <motion.label className="space-y-3" variants={fadeInUp}>
+                  <span className="field-label">Subject *</span>
+                  <input
+                    type="text"
+                    {...register('subject')}
+                    className="field-input"
+                    placeholder="Project Inquiry"
+                    aria-invalid={!!errors.subject}
+                  />
+                  {errors.subject && (
+                    <motion.p 
+                      className="text-red-400 text-sm"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.subject.message}
+                    </motion.p>
+                  )}
+                </motion.label>
+              </div>
+
+              <motion.label className="space-y-3" variants={fadeInUp}>
+                <span className="field-label">Your Message *</span>
+                <textarea
+                  {...register('message')}
+                  rows={6}
+                  className="field-input resize-none"
+                  placeholder="Tell me about your project, goals, and how I can help bring your vision to life..."
+                  aria-invalid={!!errors.message}
+                />
+                {errors.message && (
+                  <motion.p 
+                    className="text-red-400 text-sm"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors.message.message}
+                  </motion.p>
+                )}
+              </motion.label>
+
+              <motion.button
+                className="field-btn disabled:opacity-50 disabled:cursor-not-allowed"
+                type="submit"
+                disabled={loading}
+                variants={fadeInUp}
+                whileHover={{ scale: loading ? 1 : 1.02, y: loading ? 0 : -2 }}
+                whileTap={{ scale: loading ? 1 : 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                {loading ? (
+                  <>
+                    <LoadingSpinner size="sm" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <motion.img
+                      src="/assets/arrow-up.png"
+                      alt="arrow-up"
+                      className="field-btn_arrow"
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </>
+                )}
+              </motion.button>
+            </motion.form>
+          </Card>
+        </motion.div>
+      </div>
+    </Section>
+  );
+}
+
           >
             <label className="space-y-3">
               <span className="field-label">Full Name</span>

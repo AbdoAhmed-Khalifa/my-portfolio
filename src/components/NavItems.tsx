@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { navLinks } from '../constants';
+import { motion } from 'framer-motion';
 
 export default function NavItems() {
   const [activeHash, setActiveHash] = useState<string>('#home');
@@ -29,7 +30,21 @@ export default function NavItems() {
   return (
     <ul className="nav-ul">
       {navLinks.map(({ id, name, href }) => (
-        <a
+        <motion.li key={id}>
+          <a
+            className={`nav-li ${activeHash === href ? 'text-white' : ''}`}
+            href={href}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="nav-li_a">{name}</span>
+          </a>
+        </motion.li>
+      ))}
+    </ul>
+  );
+}
+
           key={id}
           className={`nav-li ${activeHash === href ? 'text-white' : ''}`}
           href={href}

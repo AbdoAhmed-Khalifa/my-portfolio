@@ -1,44 +1,63 @@
 import Globe from 'react-globe.gl';
 import Button from '../components/Button';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Card } from '../components/ui/Card';
+import { Section } from '../components/ui/Section';
+import { OptimizedImage } from '../components/ui/OptimizedImage';
+import { useClipboard } from '../hooks/useClipboard';
+import { fadeInUp, staggerContainer } from '../utils/animations';
+
 export default function About() {
-  const [isCopied, setIsCopied] = useState<boolean>(false);
-  function handleCopy() {
-    navigator.clipboard.writeText('abdelrahmanahmedkhalifa99@gmail.com');
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  }
+  const { isCopied, copyToClipboard } = useClipboard();
+  const email = 'abdelrahmanahmedkhalifa99@gmail.com';
+
+  const handleCopy = () => {
+    copyToClipboard(email);
+  };
 
   return (
-    <section className="c-space my-20 " id="about">
-      <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 w-full gap-5">
-        <div className="col-span-1 xl:row-span-3">
-          <div className="grid-container">
-            <img
+    <Section 
+      id="about" 
+      title="About Me" 
+      subtitle="Get to know more about my background, skills, and passion for web development"
+    >
+      <motion.div 
+        className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 w-full gap-6"
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <motion.div className="col-span-1 xl:row-span-3" variants={fadeInUp}>
+          <Card className="h-full">
+            <OptimizedImage
               src="/assets/grid1.png"
               alt="grid-1"
-              className="w-full h-fit sm:h-[276px] object-contain"
+              className="w-full h-fit sm:h-[276px] object-contain rounded-lg mb-4"
+              priority
             />
             <div>
-              <p className="grid-headtext">Hi, I'm Abdelrahman</p>
-              <p className="grid-subtext">
+              <h3 className="grid-headtext">Hi, I'm Abdelrahman</h3>
+              <p className="grid-subtext leading-relaxed">
                 Motivated Web Developer skilled in frontend for mobile and web,
                 with backend knowledge. Focused on building responsive,
                 efficient, and user-centered solutions.
               </p>
             </div>
-          </div>
-        </div>
-        <div className="col-span-1 xl:row-span-3">
-          <div className="grid-container">
-            <img
+          </Card>
+        </motion.div>
+        
+        <motion.div className="col-span-1 xl:row-span-3" variants={fadeInUp}>
+          <Card className="h-full">
+            <OptimizedImage
               src="/assets/grid2.png"
               alt="grid-2"
-              className="w-full h-fit sm:h-[276px] object-contain"
+              className="w-full h-fit sm:h-[276px] object-contain rounded-lg mb-4"
             />
             <div>
-              <p className="grid-headtext">Tech Stack</p>
-              <p className="grid-subtext">
+              <h3 className="grid-headtext">Tech Stack</h3>
+              <p className="grid-subtext leading-relaxed">
                 JavaScript/TypeScript, React.js, Next.js, and Node.js. State
                 management with Redux Toolkit and React Query; styling with
                 Tailwind CSS, Styled Components, and Sass; animations with
@@ -46,11 +65,12 @@ export default function About() {
                 MongoDB.
               </p>
             </div>
-          </div>
-        </div>
-        <div className="col-span-1 xl:row-span-4">
-          <div className="grid-container">
-            <div className="w-full rounded-3xl h-fit sm:h-[326px] flex items-center justify-center ">
+          </Card>
+        </motion.div>
+        
+        <motion.div className="col-span-1 xl:row-span-4" variants={fadeInUp}>
+          <Card className="h-full">
+            <div className="w-full rounded-3xl h-fit sm:h-[326px] flex items-center justify-center mb-4">
               <Globe
                 height={326}
                 width={326}
@@ -71,7 +91,7 @@ export default function About() {
               />
             </div>
             <div>
-              <p className="grid-headtext">Availability</p>
+              <h3 className="grid-headtext">Availability</h3>
               <p className="grid-subtext">
                 Open to remote, hybrid, or on‑site roles.
               </p>
@@ -79,54 +99,68 @@ export default function About() {
                 href="https://wa.me/201065058121?text=Hi%20Abdelrahman,%20I'm%20interested%20in%20discussing%20a%20work%20opportunity%20with%20you."
                 target="_blank"
               >
-                <Button
-                  name="Let's Work Together"
-                  isBeam
-                  containerClass="mt-10 w-full"
-                />
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button
+                    name="Let's Work Together"
+                    isBeam
+                    containerClass="mt-6 w-full"
+                  />
+                </motion.div>
               </a>
             </div>
-          </div>
-        </div>
-        <div className="xl:col-span-2 xl:row-span-3">
-          <div className="grid-container">
-            <img
+          </Card>
+        </motion.div>
+        
+        <motion.div className="xl:col-span-2 xl:row-span-3" variants={fadeInUp}>
+          <Card className="h-full">
+            <OptimizedImage
               src="/assets/grid3.png"
               alt="grid-3"
-              className="w-full  sm:h-[266px] h-fit object-contain"
+              className="w-full sm:h-[266px] h-fit object-contain rounded-lg mb-4"
             />
             <div>
-              <p className="grid-headtext">My Passion for Coding</p>
-              <p className="grid-subtext">
+              <h3 className="grid-headtext">My Passion for Coding</h3>
+              <p className="grid-subtext leading-relaxed">
                 I love solving problems and building things through code. Coding
                 isn't just my profession - it is my passion.
               </p>
             </div>
-          </div>
-        </div>
-        <div className="xl:col-span-1 xl:row-span-2">
-          <div className="grid-container">
-            <img
+          </Card>
+        </motion.div>
+        
+        <motion.div className="xl:col-span-1 xl:row-span-2" variants={fadeInUp}>
+          <Card className="h-full">
+            <OptimizedImage
               src="/assets/grid4.png"
               alt="grid-4"
-              className="w-full h-fit sm:h-[276px] md:h-[126px] object-cover sm:object-top"
+              className="w-full h-fit sm:h-[276px] md:h-[126px] object-cover sm:object-top rounded-lg mb-4"
             />
             <div className="space-y-2">
-              <p className="grid-subtext text-center">Contact me</p>
-              <div className="copy-container" onClick={handleCopy}>
-                <img
+              <h4 className="grid-subtext text-center font-semibold">Contact me</h4>
+              <motion.div 
+                className="copy-container group" 
+                onClick={handleCopy}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <motion.img
                   src={isCopied ? '/assets/tick.svg' : '/assets/copy.svg'}
                   alt="copy"
-                  className="w-6 h-6 cursor-pointer"
+                  className="w-6 h-6 cursor-pointer transition-transform group-hover:scale-110"
+                  animate={isCopied ? { scale: [1, 1.2, 1] } : {}}
+                  transition={{ duration: 0.3 }}
                 />
-                <p className="font-medium text-white sm:text-base text-sm text-gray_gradient">
-                  abdelrahmanahmedkhalifa99@gmail.com
+                <p className="font-medium text-white sm:text-base text-sm text-gray_gradient group-hover:text-white transition-colors">
+                  {email}
                 </p>
-              </div>
+              </motion.div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </Card>
+        </motion.div>
+      </motion.div>
+    </Section>
   );
 }
