@@ -201,33 +201,43 @@ export const calculateSizes = (
 export const workExperiences = [
   {
     id: 1,
-    name: 'FTL Group',
+    name: 'Coretech Innovations',
     pos: 'Front-End Developer',
-    duration: 'Jan 2025 - Present',
+    duration: 'Jan 2026 - Present',
     title:
-      'Built and maintained responsive logistics platforms using React.js and Next.js. Applied clean code practices, reduced UI bugs, and optimized page performance (−1.5s load time). Leveraged state management and modern styling libraries.',
-    icon: '/assets/ftl.jpg',
+      'Developing responsive web and mobile applications for embedded systems, IoT, and E-Mobility solutions. Building intuitive dashboards and interfaces for EV charging systems and EEBUS integration using React.js and Next.js with modern UI frameworks.',
+    icon: '/assets/coretech.webp',
     animation: 'victory',
   },
   {
     id: 2,
+    name: 'FTL Group',
+    pos: 'Front-End Developer',
+    duration: 'Jan 2025 - Dec 2025',
+    title:
+      'Built and maintained responsive logistics platforms using React.js and Next.js. Applied clean code practices, reduced UI bugs, and optimized page performance (−1.5s load time). Leveraged state management and modern styling libraries.',
+    icon: '/assets/ftl.jpg',
+    animation: 'clapping',
+  },
+  {
+    id: 3,
     name: 'Information Technology Institute',
     pos: 'External Instructor',
     duration: 'May 2024 - Jan 2025',
     title:
       'Taught 50+ students HTML, CSS, JavaScript, and React fundamentals. Supervised 10+ practical assignments, improving coding confidence and problem‑solving skills.',
     icon: '/assets/iti.png',
-    animation: 'clapping',
+    animation: 'salute',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Information Technology Institute',
     pos: 'Front-End Development Intern',
     duration: 'Nov 2023 - Apr 2024',
     title:
       'Hands‑on front‑end experience across React, Next.js, and TypeScript, collaborating with teams to build user‑friendly interfaces.',
     icon: '/assets/iti.png',
-    animation: 'salute',
+    animation: 'idle',
   },
 ];
 export const technologies = [
